@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class ServerConfig {
 
-    private final int serverPort;
+    private final int proxyPort;
 
     private final int destinationPort;
 
@@ -14,16 +14,16 @@ public class ServerConfig {
 
     private final int numberOfThreads;
 
-    private ServerConfig(int serverPort, int destinationPort, String destinationUrl, int numberOfThreads) {
-        this.serverPort = serverPort;
+    private ServerConfig(int proxyPort, int destinationPort, String destinationUrl, int numberOfThreads) {
+        this.proxyPort = proxyPort;
         this.destinationPort = destinationPort;
         this.destinationUrl = destinationUrl;
         this.numberOfThreads = numberOfThreads;
     }
 
 
-    public int getServerPort() {
-        return serverPort;
+    public int getProxyPort() {
+        return proxyPort;
     }
 
     public int getDestinationPort() {
@@ -38,7 +38,7 @@ public class ServerConfig {
         return numberOfThreads;
     }
 
-    public static ServerConfig createServerConfig() throws IOException {
+    public static ServerConfig createProxyContext() throws IOException {
         InputStream inputStream = ServerConfig.class.getClassLoader().getResourceAsStream("server.properties");
         Properties properties = new Properties();
         properties.load(inputStream);
@@ -49,7 +49,7 @@ public class ServerConfig {
         return new ServerConfig(sPort, dPort, dUrl, nThreads);
     }
 
-    public static ServerConfig defaultContext() {
+    public static ServerConfig defaultProxyContext() {
         return new ServerConfig(3000, 8080, "localhost", 5);
     }
 }

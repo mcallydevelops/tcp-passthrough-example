@@ -13,17 +13,18 @@ public class Context {
         this.serverConfig = serverConfig;
     }
 
-    public static Context createContext() throws IOException {
-        ServerConfig config = ServerConfig.createServerConfig();
-        return new Context(config);
-    }
-
-    public static Context defaultContext() throws IOException {
-        ServerConfig config = ServerConfig.defaultContext();
-        return new Context(config);
-    }
-
     public ServerConfig getServerConfig() {
         return serverConfig;
     }
+
+    public static Context createProxyContext() throws IOException {
+        ServerConfig config = ServerConfig.createProxyContext();
+        return new Context(config);
+    }
+
+    public static Context createDefaultContext() throws IOException {
+        ServerConfig config = ServerConfig.defaultProxyContext();
+        return new Context(config);
+    }
+
 }
